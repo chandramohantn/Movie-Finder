@@ -1,0 +1,8 @@
+{
+    "database_name": "movie_db",
+    "database_ip": "127.0.0.1",
+    "database_port": "27017",
+    "database_user": "",
+    "database_password": "",
+    "base_url": "https://en.wikipedia.org"
+}

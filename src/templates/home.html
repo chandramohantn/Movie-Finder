@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Finder</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+
+<script>
+    function myFunction() {
+        var cast = $('#text').val();
+        $.ajax({
+                'url': "/get_movie",
+                'type': "POST",
+                'dataType': 'json',
+                'contentType': 'application/json',
+                'data': JSON.stringify({
+                                "cast": cast
+                                })
+                })
+                .done(function(response) {
+                    var html = "<br><br><br><p> <b> RESULT : <b><p>";
+                    response = response.movies;
+                    $.each(response,function(key, val) {
+                    console.log(val);
+                        html += "<p>" + val + "<p>"
+                    });
+                    html +="<br>";
+                    $(".show-data").append(html);
+                    });
+        };
+</script>
+
+<body>
+    <p>
+        Cast Names<input type="text" id="text" name="text"><br><br>
+        <button id="clicked" onclick="myFunction()">Submit</button>
+    </p>
+    <div class="show-data" >
+    </div>
+</body>
+</html>
